@@ -9,6 +9,7 @@ $(document).ready(function() {
 	})
 	.mousedown(function() {
 		playHadouken();
+		$('.ryu-still').hide();
 		$('.ryu-ready').hide();
 		$('.ryu-throwing').show();
 		$('.hadouken').finish().show().animate(
@@ -22,6 +23,14 @@ $(document).ready(function() {
 	.mouseup(function() {
 		$('.ryu-throwing').hide();
 		$('.ryu-ready').show();
+	}
+	);
+
+	$(document).keydown(function(e) {
+		poseCool(e);
+	})
+	.keyup(function(e) {
+		poseStill(e);
 	});
 });
 
@@ -30,3 +39,19 @@ function playHadouken () {
 	$('#hadouken-sound')[0].load();
 	$('#hadouken-sound')[0].play();
 }
+
+function poseCool(key) {
+	if (key.keyCode == "88") {
+		$('.ryu-still').hide();
+		$('.ryu-ready').hide();
+		$('.ryu-cool').show();
+	}
+}
+
+function poseStill(key) {
+	if (key.keyCode == "88") {
+		$('.ryu-cool').hide();
+		$('.ryu-still').show();
+	}
+}
+
